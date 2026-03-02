@@ -100,7 +100,7 @@ if (localStorage.getItem("userRole") !== "committee") {
 <script>
 /* Load meal status on page load */
 window.onload = function () {
-  fetch("http://localhost:5000/api/meal-status")
+  // fetch("http:/hcrms-production.up.railway.app/api/meal-status")
     .then(res => res.json())
     .then(data => updateMealButton(data.enabled))
     .catch(() => {
@@ -124,11 +124,11 @@ function updateMealButton(enabled) {
 
 /* Toggle meal */
 function toggleMeal() {
-  fetch("http://localhost:5000/api/meal-toggle", { method: "POST" })
+  fetch("http://hcrms-production.up.railway.app/api/meal-toggle", { method: "POST" })
     .then(res => res.json())
     .then(msg => {
       alert(msg.message);
-      return fetch("http://localhost:5000/api/meal-status");
+      return fetch("http://hcrms-production.up.railway.app/api/meal-status");
     })
     .then(res => res.json())
     .then(data => updateMealButton(data.enabled))
@@ -137,7 +137,7 @@ function toggleMeal() {
 
 /* Load meal report */
 function loadMealReport() {
-  fetch("http://localhost:5000/api/meal-summary")
+  fetch("http://hcrms-production.up.railway.app/api/meal-summary")
     .then(res => res.json())
     .then(data => {
       let veg = 0, nonveg = 0;
@@ -149,7 +149,7 @@ function loadMealReport() {
         `Veg: ${veg} | Non-Veg: ${nonveg}`;
     });
 
-  fetch("http://localhost:5000/api/meal-list")
+  fetch("http://hcrms-production.up.railway.app/api/meal-list")
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("mealTable");
@@ -174,7 +174,7 @@ function deleteMealList() {
   const pwd = prompt("Enter committee password:");
   if (!pwd) return;
 
-  fetch("http://localhost:5000/api/meal-delete-all", {
+  fetch("http://hcrms-production.up.railway.app/api/meal-delete-all", {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ committeePassword: pwd })
@@ -191,7 +191,7 @@ function loadAttendance() {
   const date = document.getElementById("attendanceDate").value;
   if (!date) return alert("Select a date");
 
-  fetch(`http://localhost:5000/api/attendance/by-date/${date}`)
+  fetch(`http://hcrms-production.up.railway.app/api/attendance/by-date/${date}`)
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("attendanceTable");
@@ -226,7 +226,7 @@ function loadMonthlyStudentMeal() {
     return;
   }
 
-  fetch(`http://localhost:5000/api/meal-monthly-student/${year}/${month}`)
+  fetch(`http://hcrms-production.up.railway.app/api/meal-monthly-student/${year}/${month}`)
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("monthlyStudentTable");
