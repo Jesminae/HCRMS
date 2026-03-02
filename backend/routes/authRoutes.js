@@ -21,6 +21,7 @@ router.post("/login", (req, res) => {
     WHERE username = ? AND password = ? AND LOWER(role) = LOWER(?)
   `;
 
+  console.log("LOGIN DATA:", username, password, role);
   db.query(sql, [username, password, role], (err, results) => {
     if (err) {
       console.error("Login error:", err);
