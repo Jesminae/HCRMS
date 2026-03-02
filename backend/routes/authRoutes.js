@@ -18,7 +18,7 @@ router.post("/login", (req, res) => {
   const sql = `
     SELECT id, name, username, role, room_no
     FROM users
-    WHERE username = ? AND password = ? AND role = ?
+    WHERE username = ? AND password = ? AND LOWER(role) = LOWER(?)
   `;
 
   db.query(sql, [username, password, role], (err, results) => {
