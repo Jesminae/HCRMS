@@ -81,7 +81,7 @@ function goToComplaint() {
 
 /* Mark attendance */
 function markAttendance() {
-  fetch("http://localhost:5000/api/attendance/mark", {
+  fetch("http://hcrms-production.up.railway.app/api/attendance/mark", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -103,7 +103,7 @@ function submitMeal() {
   }
 
   /* Check if meal is enabled */
-  fetch("http://localhost:5000/api/meal-status")
+  fetch("http://hcrms-production.up.railway.app/api/meal-status")
     .then(res => res.json())
     .then(statusData => {
       if (!statusData.enabled) {
@@ -112,7 +112,7 @@ function submitMeal() {
       }
 
       /* If enabled, submit meal */
-      fetch("http://localhost:5000/api/meal", {
+      fetch("http://hcrms-production.up.railway.app/api/meal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -131,7 +131,7 @@ function submitMeal() {
 function loadMyComplaints() {
   const username = localStorage.getItem("username");
 
-  fetch(`http://localhost:5000/api/complaints/student/${username}`)
+  fetch(`http://hcrms-production.up.railway.app/api/complaints/student/${username}`)
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("myComplaintTable");
