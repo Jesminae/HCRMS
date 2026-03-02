@@ -66,7 +66,7 @@
 /* =================================================
    LOAD COMPLAINTS
 ================================================= */
-fetch("http://localhost:5000/api/complaints")
+fetch("http://hcrms-production.up.railway.app/api/complaints")
   .then(res => res.json())
   .then(data => {
     const table = document.getElementById("complaintTable");
@@ -103,7 +103,7 @@ fetch("http://localhost:5000/api/complaints")
 function updateStatus(id, status) {
   if (!status) return;
 
-  fetch(`http://localhost:5000/api/complaints/update/${id}`, {
+  fetch(`http://hcrms-production.up.railway.app/api/complaints/update/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ status })
@@ -126,7 +126,7 @@ function loadAttendance() {
     return;
   }
 
-  fetch(`http://localhost:5000/api/attendance/by-date/${date}`)
+  fetch(`http://hcrms-production.up.railway.app/api/attendance/by-date/${date}`)
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("attendanceTable");
